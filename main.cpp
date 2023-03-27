@@ -7,7 +7,7 @@ int main()
     std::string webhook_url = "https://discord.com/api/webhooks/1089850495771889735/zWTKPYGHCgOSjtr15c2OdWANYEPO_yjQohm5p_vFeBF0CYgo5QxYUApgM4VliMQSa7s9";
 
     std::string new_username = "My New Webhook Username";
-    std::string new_avatar_url = "https://example.com/my_new_avatar.png";
+    std::string new_avatar_url = "https://static.vecteezy.com/system/resources/previews/019/493/370/original/chatgpt-logo-openai-logo-ai-chatbot-chatgpt-copy-space-text-editorial-illustration-free-vector.jpg";
 
     // Créer un objet JSON avec les nouvelles informations du webhook
     nlohmann::json json_data;
