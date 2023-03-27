@@ -1,12 +1,16 @@
 #include <curl/curl.h>
 #include <iostream>
 #include <string>
+#include <chrono>
+#include <thread>
+#include <random>
+
 
 std::string webhook_url = "https://discord.com/api/webhooks/1089850495771889735/zWTKPYGHCgOSjtr15c2OdWANYEPO_yjQohm5p_vFeBF0CYgo5QxYUApgM4VliMQSa7s9";
 std::string yoda_avatar = "https://media.anakinworld.com/uploads/entries/original/personnage-yoda.jpg";
 std::string storm_avatar = "https://www.pngarts.com/files/6/Star-Wars-Stormtrooper-Helmet-PNG-Image.png";
 std::string jedi_avatar = "https://lumiere-a.akamaihd.net/v1/images/ahmed-best-kelleran-beq-featured_404adce1.jpeg?region=0,0,1600,900&width=960";
-
+std::string dark_vador_avatar = "https://www.burnleyexpress.net/images-i.jpimedia.uk/imagefetch/https://jpgreatcontent.co.uk/wp-content/uploads/2019/10/shutterstock_239009761.jpg?width=1200&enable=upscale";
 class Yoda {
 public:
     std::string repliques[15] = {
@@ -66,7 +70,7 @@ public:
         "Vous avez mal choisi votre camp.",
         "Vous êtes de plus en plus audacieux.",
         "Je vais vous donner une dernière chance de vous rendre.",
-        "Nous avons une situation anormale ici."
+        "Nous controlons le Discord."
     };
 };
 
@@ -133,14 +137,59 @@ void send_message(std::string username, std::string avatar, std::string message)
 }
 int main(int argc, char* argv[])
 {
+    // Vérifier que nous avons au moins 4 arguments (nom du programme, URL du webhook, nom d'utilisateur et contenu du message)
+    if (argc < 2) {
+        std::cout << "Usage: " << argv[0] << " <invasion/yoda/vador/jedi/rex/auto>" << std::endl;
+        return 1;
+    }
     Yoda yoda;
     Stormtrooper stormtrooper;
     DarkVador darkvador;
     Jedi jedi;
-    // Vérifier que nous avons au moins 4 arguments (nom du programme, URL du webhook, nom d'utilisateur et contenu du message)
-    if (argc < 4) {
-        std::cout << "Usage : " << argv[0] << " <username> <avatar> <message>" << std::endl;
-        return 1;
+
+    std::srand(std::time(nullptr));
+    
+    if(std::strcmp(argv[1], "rex") == 0) {
+        send_message("Rex", "https://static.wikia.nocookie.net/hunterxhunter/images/0/05/Hunter_Association_logo.png/revision/latest?cb=20180405075402", "Il y a bien longtemps, dans une galaxie lointaine, très lointaine...");
     }
-    send_message(argv[1], argv[2], argv[3]);
+    else if(std::strcmp(argv[1], "invasion") == 0) {
+        for(int i = 0; i < 7; i++) {
+            send_message("Stormtrooper", storm_avatar, stormtrooper.repliques[std::rand() % 15]);
+            std::this_thread::sleep_for(std::chrono::seconds(3));
+        }
+    }
+    else if(std::strcmp(argv[1], "yoda") == 0) {
+        send_message("Yoda", yoda_avatar, yoda.repliques[std::rand() % 16]);
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+        
+    }
+    else if(std::strcmp(argv[1], "vador") == 0) {
+        send_message("Dark Vador", dark_vador_avatar, darkvador.repliques[std::rand() % 15]);
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+    }
+    else if(std::strcmp(argv[1], "jedi") == 0) {
+        send_message("Jedi", jedi_avatar, jedi.repliques[std::rand() % 6]);
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+    }
+    else if(std::strcmp(argv[1], "auto") == 0){
+        send_message("Rex", "https://static.wikia.nocookie.net/hunterxhunter/images/0/05/Hunter_Association_logo.png/revision/latest?cb=20180405075402", "Il y a bien longtemps, dans une galaxie lointaine, très lointaine...");
+        while(true) {
+            int random_perso = std::rand() % 4;
+            switch (random_perso) {
+                case 0:
+                    send_message("Stormtrooper", storm_avatar, stormtrooper.repliques[std::rand() % 15]);
+                    break;
+                case 1:
+                    send_message("Yoda", yoda_avatar, yoda.repliques[std::rand() % 16]);
+                    break;
+                case 2:
+                    send_message("Dark Vador", dark_vador_avatar, darkvador.repliques[std::rand() % 15]);
+                    break;
+                case 3:
+                    send_message("Jedi", jedi_avatar, jedi.repliques[std::rand() % 6]);
+                    break;
+            }
+            std::this_thread::sleep_for(std::chrono::seconds(95));
+        }
+    }
 }
