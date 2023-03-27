@@ -6,7 +6,7 @@
 #include <random>
 
 
-std::string webhook_url = "https://discord.com/api/webhooks/1089850495771889735/zWTKPYGHCgOSjtr15c2OdWANYEPO_yjQohm5p_vFeBF0CYgo5QxYUApgM4VliMQSa7s9";
+std::string webhook_url = "youwehbookurl";
 std::string yoda_avatar = "https://media.anakinworld.com/uploads/entries/original/personnage-yoda.jpg";
 std::string storm_avatar = "https://www.pngarts.com/files/6/Star-Wars-Stormtrooper-Helmet-PNG-Image.png";
 std::string jedi_avatar = "https://lumiere-a.akamaihd.net/v1/images/ahmed-best-kelleran-beq-featured_404adce1.jpeg?region=0,0,1600,900&width=960";
