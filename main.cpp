@@ -11,6 +11,7 @@ int main()
 
     // Créer un objet JSON avec les nouvelles informations du webhook
     nlohmann::json json_data;
+    json_data["content"] = "Hello World!";
     json_data["name"] = new_username;
     json_data["avatar_url"] = new_avatar_url;
 
