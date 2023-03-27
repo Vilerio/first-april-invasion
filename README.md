@@ -4,6 +4,6 @@ A invasion of Star Wars Webhooks for the first april
 
 ## How to use
 
-> to use this invasion you need to have a discord server and a webhook <br/><br/>
-> to compile, use ``g++ main.cpp -lcurl`` (you need to have curl installed) <br/>
-> launch the program and follow the instructions
+Change the webhook in the code and compile it with ``g++ main.cpp -lcurl`` (you need to have curl installed) <br/>
+
+Launch the program and follow the instructions
